@@ -1,1 +1,10 @@
-spring.jpa.hibernate.ddl-auto=create
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      org:
+        hibernate:
+          envers:
+            global_with_modified_flag: true
+            store_data_at_delete: true
