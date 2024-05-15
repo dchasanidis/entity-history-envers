@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CustomRevisionListener implements RevisionListener {
 
     @Override
-    public void newRevision(Object revisionEntity) {
+    public void newRevision(final Object revisionEntity) {
         final String principalName = getDummyUsername();
         final MyRevision myRevision = (MyRevision) revisionEntity;
         myRevision.setUsername(principalName);

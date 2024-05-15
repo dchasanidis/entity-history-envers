@@ -1,6 +1,6 @@
 package com.dchasanidis.envershistory.entities.model;
 
-import com.dchasanidis.envershistory.entities.envers.AuditedEntity;
+import com.dchasanidis.envershistory.entities.envers.Identifiable;
 import jakarta.persistence.*;
 import org.hibernate.envers.Audited;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -10,7 +10,7 @@ import java.util.UUID;
 @Entity
 @Audited
 @EntityListeners(AuditingEntityListener.class)
-public class UserEntity implements AuditedEntity<UUID> {
+public class UserEntity implements Identifiable<UUID> {
     @Id
     @GeneratedValue
     private UUID id;
@@ -21,13 +21,9 @@ public class UserEntity implements AuditedEntity<UUID> {
     @Column(name = "name")
     private String name;
 
-    @Embedded
-    private Address address;
+    @Column(name = "address")
+    private String address;
 
-    @Override
-    public String getIdAsString() {
-        return getId().toString();
-    }
 
     @Override
     public UUID getId() {
@@ -38,11 +34,20 @@ public class UserEntity implements AuditedEntity<UUID> {
         this.id = id;
     }
 
+    public UserEntity id(UUID id) {
+        this.id = id;
+        return this;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public UserEntity setEmail(final String email) {
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public UserEntity email(final String email) {
         this.email = email;
         return this;
     }
@@ -51,16 +56,24 @@ public class UserEntity implements AuditedEntity<UUID> {
         return name;
     }
 
-    public UserEntity setName(final String name) {
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public UserEntity name(final String name) {
         this.name = name;
         return this;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public UserEntity setAddress(final Address address) {
+    public void setAddress(final String address) {
+        this.address = address;
+    }
+
+    public UserEntity address(final String address) {
         this.address = address;
         return this;
     }
