@@ -73,7 +73,7 @@ public class RevisionDetailsService<T extends Identifiable<?>> {
         if (enversResultList.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(EnversRevisionEntry.fromEnvers(enversResultList.get(0), entityClass));
+        return Optional.of(EnversRevisionEntry.fromEnvers(enversResultList.getFirst(), entityClass));
     }
 
     private RevisionAttribute createAttributeDelta(final String property, final T oldEntity, final T newEntity) {
