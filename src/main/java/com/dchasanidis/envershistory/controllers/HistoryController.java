@@ -15,10 +15,10 @@ import java.util.UUID;
 
 @RestController
 public class HistoryController {
-    private final RevisionService<UserEntity> revisionService;
+    private final RevisionService revisionService;
     private final RevisionDetailsService<UserEntity> revisionDetailsService;
 
-    public HistoryController(final RevisionService<UserEntity> revisionService, final RevisionDetailsService<UserEntity> revisionDetailsService) {
+    public HistoryController(final RevisionService revisionService, final RevisionDetailsService<UserEntity> revisionDetailsService) {
         this.revisionService = revisionService;
         this.revisionDetailsService = revisionDetailsService;
     }
