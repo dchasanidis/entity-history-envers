@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin
@@ -32,11 +34,22 @@ public class UserController {
         );
     }
 
-    @PutMapping("/users")
-    public ResponseEntity<UserEntity> modifyUser() {
-        final UserEntity updated = userRepository.findAll().getFirst()
-                .name("Updated Name")
-                .email("updated@email.com");
-        return ResponseEntity.ok(userRepository.save(updated));
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<UserEntity> modifyUser(@PathVariable final UUID userId, final @RequestBody CreateUserRequest body) {
+        final Optional<UserEntity> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            final UserEntity updated = user.get()
+                    .name(body.name())
+                    .email(body.email())
+                    .address(body.address());
+            return ResponseEntity.ok(userRepository.save(updated));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable final String userId) {
+        userRepository.deleteById(UUID.fromString(userId));
+        return ResponseEntity.accepted().build();
     }
 }
