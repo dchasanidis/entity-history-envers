@@ -55,3 +55,37 @@ Example responses:
     "timestamp": "2024-05-04T10:17:21.118"
 }
 ```
+
+3) For deleting an entity
+
+```
+{
+    "entityId": "8f666ffd-c9fb-48d9-b9bb-fa7512e8c8bf",
+    "entityName": "UserEntity",
+    "operationType": "del",
+    "attributes": [
+        {
+            "attributeName": "address",
+            "oldValue": "3314 Wisozk Hill",
+            "newValue": ""
+        },
+        {
+            "attributeName": "email",
+            "oldValue": "Korbin.Nikolaus@yahoo.com",
+            "newValue": ""
+        },
+        {
+            "attributeName": "id",
+            "oldValue": "8f666ffd-c9fb-48d9-b9bb-fa7512e8c8bf",
+            "newValue": ""
+        },
+        {
+            "attributeName": "name",
+            "oldValue": "Nicholas McGlynn",
+            "newValue": ""
+        }
+    ],
+    "author": "Dummy_username",
+    "timestamp": "2024-05-26T22:29:45.218"
+}
+```
